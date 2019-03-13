@@ -1,28 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  name: "app",
+  components: {},
+  mounted(){
+    // dispatch可以穿两个参数，第一个为模块名字/指令，第二个为对象
+    this.$store.dispatch("user/islogin",() => {
+      this.$Message.warning('你还未登录，请先登录');
+      setTimeout(() => {
+         this.$router.push("/login");
+      },500);
+    })
   }
-}
+};
 </script>
 
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.mg20 {
+  margin: 20px 0;
 }
 </style>
